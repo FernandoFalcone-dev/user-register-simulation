@@ -8,16 +8,18 @@
             <thead>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Surname</th>
                 <th>Age</th>
                 <th>Profession</th>
                 <th colspan="2"></th>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fernando</td>
-                    <td>29</td>
-                    <td>Developer</td>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.surname }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.profession }}</td>
                     <td>
                         <button class="btn btn-primary">Edit</button>
                     </td>
