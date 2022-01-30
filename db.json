@@ -1,0 +1,40 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Fernando",
+            "surname": "Falcone",
+            "age": "29",
+            "profession": "Developer"
+        },
+        {
+            "id": 2,
+            "name": "Neymar",
+            "surname": "Junior",
+            "age": "30",
+            "profession": "Soccer Player"
+        },
+        {
+            "id": 3,
+            "name": "Mariah",
+            "surname": "Carey",
+            "age": "52",
+            "profession": "Singer"
+        },
+        {
+            "id": 4,
+            "name": "Daniel",
+            "surname": "Radcliffe",
+            "age": "32",
+            "profession": "Actor"
+        },
+        {
+            "id": 5,
+            "name": "Serena",
+            "surname": "Williams",
+            "age": "40",
+            "profession": "tennis player"
+        }
+        
+    ]
+}
