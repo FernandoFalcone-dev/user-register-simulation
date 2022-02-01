@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,8 +12,14 @@ import { UserService } from 'src/app/services/user.service';
 export class UserFormComponent implements OnInit {
   userForm: FormGroup;
   users: Array<User> = [];
+  userId: any = '';
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private actRoute: ActivatedRoute,
+    private router: Router
+  ) {
     this.userForm = this.fb.group({
       id: 0,
       name: '',
@@ -23,6 +30,21 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.actRoute.paramMap.subscribe((params) => {
+      this.userId = params.get('id');
+      console.log(this.userId);
+      if (this.userId !== null) {
+        this.userService.getUser(this.userId).subscribe((result) => {
+          this.userForm.patchValue({
+            id: result.id,
+            name: result.name,
+            surname: result.surname,
+            age: result.age,
+            profession: result.profession,
+          });
+        });
+      }
+    });
     this.getUsers();
   }
 
@@ -43,7 +65,30 @@ export class UserFormComponent implements OnInit {
       },
       complete: () => {
         this.userForm.reset();
+        this.router.navigate(['/']);
       },
     });
+  }
+
+  updateUser() {
+    this.userService.updateUser(this.userId, this.userForm.value).subscribe({
+      next: (result) => {
+        alert('User updated successfully!');
+      },
+      error: (err) => {
+        console.log('Error to update' + err);
+      },
+      complete: () => {
+        this.router.navigate(['/']);
+      },
+    });
+  }
+
+  actionButton() {
+    if (this.userId !== null) {
+      this.updateUser();
+    } else {
+      this.createUser();
+    }
   }
 }
