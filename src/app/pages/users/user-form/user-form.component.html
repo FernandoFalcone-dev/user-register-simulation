@@ -1,7 +1,7 @@
 <div class="card w-100 my-5">
   <div class="card-body">
     <h1 class="card-title text-center">User Form</h1>
-    <form>
+    <form [formGroup]="userForm">
       <div class="row my-4">
         <div class="col-6">
           <div class="form-floating mb-3">
@@ -9,6 +9,7 @@
               type="text"
               class="form-control"
               id="name"
+              formControlName="name"
               placeholder="Enter your name"
             />
             <label for="name">Name</label>
@@ -20,6 +21,7 @@
               type="text"
               class="form-control"
               id="surname"
+              formControlName="surname"
               placeholder="Enter your surname"
             />
             <label for="surname">Surname</label>
@@ -33,6 +35,7 @@
               type="text"
               class="form-control"
               id="age"
+              formControlName="age"
               placeholder="Enter your age"
             />
             <label for="age">Age</label>
@@ -44,6 +47,7 @@
               type="text"
               class="form-control"
               id="profession"
+              formControlName="profession"
               placeholder="Enter your profession"
             />
             <label for="profession">Profession</label>
@@ -55,7 +59,7 @@
           <button type="button" class="btn btn-outline-danger float-start">
             Cancel
           </button>
-          <button type="button" class="btn btn-outline-success float-end">
+          <button type="button" class="btn btn-outline-success float-end" (click)="createUser()">
             Send
           </button>
         </div>
